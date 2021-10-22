@@ -40,6 +40,19 @@ export class GamePlay extends Phaser.Scene {
             this.bird.setDead(true);
             console.log("overlap")
         }, null, this);
+
+        var rect1 = new Phaser.Geom.Rectangle(0, 550, 390, 50);
+        var particles = this.add.particles('flame1');
+
+        particles.createEmitter({
+            x: 390,
+            y: 565,
+            angle: { min: 140, max: 180 },
+            speed: 400,
+            lifespan: { min: 1000, max: 2000 },
+            blendMode: 'ADD',
+            deathZone: { type: 'onLeave', source: rect1 }
+        });
     }
 
     private addNewRowOfPipes(): void {

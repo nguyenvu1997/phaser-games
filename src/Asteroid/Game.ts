@@ -1,10 +1,9 @@
-import { GamePlay } from "../FlappyBird/Scenes/GamePlay.js";
-import { MainMenu } from "../FlappyBird/Scenes/MainMenu.js";
-import { Preload } from "../FlappyBird/Scenes/Preload.js";
+import { GamePlay } from "./Scenes/GamePlay.js";
+import { MainMenu } from "./Scenes/MainMenu.js";
 
 const config = {
     type: Phaser.AUTO,
-    width: 390,
+    width: 800,
     height: 600,
     parent: '',
     physics: {
@@ -14,7 +13,8 @@ const config = {
             debug: true
         }
     },
-    scene: [Preload, GamePlay, MainMenu]
+    backgroundColor: '#000000',
+    scene: [MainMenu, GamePlay]
 }
 
 let game = new Phaser.Game(config);
