@@ -19,6 +19,9 @@ export class GamePlay extends Phaser.Scene {
         this.isPlayerJumping = false;
         this.settings.createTowerXPosition = 0;
     }
+    preload() {
+        this.load.atlas('flares', 'assets/Phaser/flares.png', 'assets/Phaser/flares.json');
+    }
     create() {
         const width = this.game.config.width;
         const height = this.game.config.height;
@@ -58,6 +61,18 @@ export class GamePlay extends Phaser.Scene {
         // Camera
         this.cameras.main.setBounds(0, 0, width, height);
         this.cameras.main.startFollow(this.player);
+        // Effects
+        var particles = this.add.particles('flares');
+        particles.createEmitter({
+            frame: ['white'],
+            x: 480,
+            y: -20,
+            speed: 400,
+            gravityY: 400,
+            lifespan: 1000,
+            scale: { start: 0.2, end: 0 },
+            blendMode: 'ADD',
+        });
     }
     update() {
         this.towers.getChildren().forEach((tower) => {
@@ -100,6 +115,16 @@ export class GamePlay extends Phaser.Scene {
         }
     }
     playerTowerCollision(player, tower) {
+        const colors = [0xFFBF00, 0xDFFF00, 0xFF7F50, 0xDE3163, 0x9FE2BF];
+        let tween = this.tweens.addCounter({
+            from: 0,
+            to: 100,
+            duration: 1000,
+            onUpdate: function (tween) {
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                player.setFillStyle(color);
+            }
+        });
         if (tower.body.touching.up) {
             player.body.setVelocity(0);
             this.isPlayerJumping = false;
