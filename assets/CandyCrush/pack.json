@@ -1,0 +1,66 @@
+{
+  "preload": {
+    "files": [
+      {
+        "type": "image",
+        "key": "cookie1",
+        "url": "./assets/CandyCrush/images/cookie1.png"
+      },
+      {
+        "type": "image",
+        "key": "cookie2",
+        "url": "./assets/CandyCrush/images/cookie2.png"
+      },
+      {
+        "type": "image",
+        "key": "croissant",
+        "url": "./assets/CandyCrush/images/croissant.png"
+      },
+      {
+        "type": "image",
+        "key": "cupcake",
+        "url": "./assets/CandyCrush/images/cupcake.png"
+      },
+      {
+        "type": "image",
+        "key": "donut",
+        "url": "./assets/CandyCrush/images/donut.png"
+      },
+      {
+        "type": "image",
+        "key": "eclair",
+        "url": "./assets/CandyCrush/images/eclair.png"
+      },
+      {
+        "type": "image",
+        "key": "macaroon",
+        "url": "./assets/CandyCrush/images/macaroon.png"
+      },
+      {
+        "type": "image",
+        "key": "pie",
+        "url": "./assets/CandyCrush/images/pie.png"
+      },
+      {
+        "type": "image",
+        "key": "poptart1",
+        "url": "./assets/CandyCrush/images/poptart1.png"
+      },
+      {
+        "type": "image",
+        "key": "poptart2",
+        "url": "./assets/CandyCrush/images/poptart2.png"
+      },
+      {
+        "type": "image",
+        "key": "starcookie1",
+        "url": "./assets/CandyCrush/images/starcookie1.png"
+      },
+      {
+        "type": "image",
+        "key": "starcookie2",
+        "url": "./assets/CandyCrush/images/starcookie2.png"
+      }
+    ]
+  }
+}

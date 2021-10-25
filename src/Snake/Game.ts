@@ -1,20 +1,21 @@
 import { GamePlay } from "./Scenes/GamePlay.js";
-import { MainMenu } from "./Scenes/MainMenu.js";
+import { MainMenuScene } from "./Scenes/MainMenu.js";
 
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 256,
+    height: 224,
+    zoom: 3,
     parent: '',
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
-            debug: false
+            gravity: { y: 0 },
+            debug: true
         }
     },
     backgroundColor: '#000000',
-    scene: [MainMenu, GamePlay]
+    scene: [MainMenuScene, GamePlay]
 }
 
 let game = new Phaser.Game(config);

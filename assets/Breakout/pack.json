@@ -1,0 +1,12 @@
+{
+  "preload": {
+    "files": [
+      {
+        "type": "bitmapFont",
+        "key": "font",
+        "textureURL": "./assets/Breakout/font/font.png",
+        "fontDataURL": "./assets/Breakout/font/font.fnt"
+      }
+    ]
+  }
+}

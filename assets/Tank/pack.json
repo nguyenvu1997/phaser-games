@@ -1,0 +1,87 @@
+{
+  "preload": {
+    "files": [
+      {
+        "type": "tilemapTiledJSON",
+        "key": "levelMap",
+        "url": "./assets/Tank/maps/levelMap.json"
+      },
+      {
+        "type": "bitmapFont",
+        "key": "font",
+        "textureURL": "./assets/Tank/font/font.png",
+        "fontDataURL": "./assets/Tank/font/font.fnt"
+      },
+      {
+        "type": "image",
+        "key": "tankBlue",
+        "url": "./assets/Tank/sprites/tank-blue.png"
+      },
+      {
+        "type": "image",
+        "key": "tankRed",
+        "url": "./assets/Tank/sprites/tank-red.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelBlue",
+        "url": "./assets/Tank/sprites/barrel-blue.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelRed",
+        "url": "./assets/Tank/sprites/barrel-red.png"
+      },
+      {
+        "type": "image",
+        "key": "bulletBlue",
+        "url": "./assets/Tank/sprites/bullet-blue.png"
+      },
+      {
+        "type": "image",
+        "key": "bulletRed",
+        "url": "./assets/Tank/sprites/bullet-red.png"
+      },
+      {
+        "type": "image",
+        "key": "tiles",
+        "url": "./assets/Tank/tiles/tiles.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelGreyTop",
+        "url": "./assets/Tank/obstacles/barrel-grey-top.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelGreySideRust",
+        "url": "./assets/Tank/obstacles/barrel-grey-side-rust.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelGreySide",
+        "url": "./assets/Tank/obstacles/barrel-grey-side.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelRedTop",
+        "url": "./assets/Tank/obstacles/barrel-red-top.png"
+      },
+      {
+        "type": "image",
+        "key": "barrelRedSide",
+        "url": "./assets/Tank/obstacles/barrel-red-side.png"
+      },
+      {
+        "type": "image",
+        "key": "treeSmall",
+        "url": "./assets/Tank/obstacles/tree-small.png"
+      },
+      {
+        "type": "image",
+        "key": "treeLarge",
+        "url": "./assets/Tank/obstacles/tree-large.png"
+      }
+    ]
+  }
+}
