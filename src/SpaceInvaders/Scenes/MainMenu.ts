@@ -3,9 +3,7 @@ export class MenuScene extends Phaser.Scene {
     private bitmapTexts: Phaser.GameObjects.BitmapText[] = [];
 
     constructor() {
-        super({
-            key: 'MenuScene'
-        });
+        super('MenuScene');
     }
 
     init(): void {
@@ -28,13 +26,7 @@ export class MenuScene extends Phaser.Scene {
         );
 
         this.bitmapTexts.push(
-            this.add.bitmapText(
-                this.sys.canvas.width / 2 - 60,
-                this.sys.canvas.height / 2 - 40,
-                'font',
-                'SPACE INVADERS',
-                8
-            )
+            this.add.bitmapText(this.sys.canvas.width / 2 - 60, this.sys.canvas.height / 2 - 40, 'font', 'SPACE INVADERS', 8)
         );
     }
 

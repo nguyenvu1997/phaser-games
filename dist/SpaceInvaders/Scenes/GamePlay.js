@@ -10,15 +10,13 @@ export class GameScene extends Phaser.Scene {
         this.enemies = this.add.group({ runChildUpdate: true });
     }
     create() {
-        // create game objects
+        // Create Player
         this.player = new Player({
             scene: this,
             x: this.sys.canvas.width / 2,
             y: this.sys.canvas.height - 40,
             texture: 'player'
         });
-        // if you want to make it random:
-        // let enemyTypes = ["octopus", "crab", "squid"];
         for (let y = 0; y < 5; y++) {
             for (let x = 0; x < 10; x++) {
                 let type;
@@ -31,14 +29,7 @@ export class GameScene extends Phaser.Scene {
                 else {
                     type = 'octopus';
                 }
-                // if you want to make it random:
-                // let type = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
-                this.enemies.add(new Enemy({
-                    scene: this,
-                    x: 20 + x * 15,
-                    y: 50 + y * 15,
-                    texture: type
-                }));
+                this.enemies.add(new Enemy({ scene: this, x: 20 + x * 15, y: 50 + y * 15, texture: type }));
             }
         }
     }

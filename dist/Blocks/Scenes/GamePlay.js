@@ -3,9 +3,7 @@ import { Block } from '../Objects/Block.js';
 import { Cursor } from '../Objects/Cursor.js';
 export class GamePlay extends Phaser.Scene {
     constructor() {
-        super({
-            key: 'gameplay'
-        });
+        super('gameplay');
         this.currentLevelArray = [];
     }
     init() {

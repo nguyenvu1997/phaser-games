@@ -8,11 +8,18 @@ export class Ball extends Phaser.GameObjects.Image {
     constructor(aParams: IImageConstructor) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
 
-        this.initVariables();
-        this.initImage();
-        this.initPhysics();
+        // Image
+        this.setVisible(false);
+        this.setTint(0xFCFF33)
 
+        // Variables
+        this.speed = 600;
         var particles = this.scene.add.particles('flares');
+
+        // Physics
+        this.scene.physics.world.enable(this);
+        this.body.setCollideWorldBounds(true);
+        this.body.onWorldBounds = true;
 
         particles.createEmitter({
             frame: 'yellow',
@@ -23,20 +30,6 @@ export class Ball extends Phaser.GameObjects.Image {
         });
 
         this.scene.add.existing(this);
-    }
-
-    private initVariables() {
-        this.speed = 600;
-    }
-
-    private initImage() {
-        this.setVisible(false);
-    }
-
-    private initPhysics() {
-        this.scene.physics.world.enable(this);
-        this.body.setCollideWorldBounds(true);
-        this.body.onWorldBounds = true;
     }
 
     public getSpeed(): number {

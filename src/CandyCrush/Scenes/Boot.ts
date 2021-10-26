@@ -3,9 +3,7 @@ export class BootScene extends Phaser.Scene {
     private progressBar: Phaser.GameObjects.Graphics;
 
     constructor() {
-        super({
-            key: 'BootScene'
-        });
+        super('BootScene');
     }
 
     preload(): void {
@@ -37,6 +35,8 @@ export class BootScene extends Phaser.Scene {
         );
 
         this.load.pack('preload', './assets/CandyCrush/pack.json', 'preload');
+        this.load.atlas('flares', 'assets/Phaser/flares.png', 'assets/Phaser/flares.json');
+
     }
 
     update(): void {

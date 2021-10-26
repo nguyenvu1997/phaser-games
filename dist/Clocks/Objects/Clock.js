@@ -2,10 +2,10 @@ import { settings } from "../Const.js";
 export class Clock extends Phaser.GameObjects.Sprite {
     constructor(aParams) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
-        // face sprite
+        // Face Clock
         this.face = this.scene.add.sprite(aParams.x, aParams.y, aParams.prefix + 'clockface');
         this.face.setVisible(false);
-        // hand sprite
+        // Hand Clock
         this.hand = this.scene.add.sprite(aParams.x, aParams.y, aParams.prefix + 'hand');
         this.hand.setTint(0xff6378);
         this.hand.setDepth(2);

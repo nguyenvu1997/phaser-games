@@ -15,12 +15,8 @@ export class GameScene extends Phaser.Scene {
     private target: Phaser.Math.Vector2;
 
     constructor() {
-        super({
-            key: 'GameScene'
-        });
+        super('GameScene');
     }
-
-    init(): void { }
 
     create(): void {
         // create tilemap from tiled JSON
@@ -38,7 +34,11 @@ export class GameScene extends Phaser.Scene {
         this.enemies = this.add.group({
             /*classType: Enemy*/
         });
+
+        // Create Objects
         this.convertObjects();
+
+
 
         // collider layer and obstacles
         this.physics.add.collider(this.player, this.layer);
@@ -95,6 +95,7 @@ export class GameScene extends Phaser.Scene {
 
     update(): void {
         this.player.update();
+        this.effects();
 
         this.enemies.children.each((enemy: Enemy) => {
             enemy.update();
@@ -110,6 +111,20 @@ export class GameScene extends Phaser.Scene {
                     (angle + Math.PI / 2) * Phaser.Math.RAD_TO_DEG;
             }
         }, this);
+    }
+
+    effects() {
+        // Effects
+        const { width, height } = this.game.config
+
+        var particles = this.add.particles('explosion02');
+        particles.createEmitter({
+            speed: 10,
+            blendMode: 'ADD',
+            scale: { start: 0.05, end: 0 },
+            on: false
+        });
+        particles.emitParticleAt(Phaser.Math.RND.between(20, width as number), Phaser.Math.RND.between(20, height as number), 5)
     }
 
     private convertObjects(): void {
@@ -147,19 +162,23 @@ export class GameScene extends Phaser.Scene {
     }
 
     private bulletHitLayer(bullet: Bullet): void {
+        bullet.endEffect();
         bullet.destroy();
     }
 
     private bulletHitObstacles(bullet: Bullet, obstacle: Obstacle): void {
+        bullet.endEffect();
         bullet.destroy();
     }
 
     private enemyBulletHitPlayer(bullet: Bullet, player: Player): void {
+        bullet.endEffect();
         bullet.destroy();
         player.updateHealth();
     }
 
     private playerBulletHitEnemy(bullet: Bullet, enemy: Enemy): void {
+        bullet.endEffect();
         bullet.destroy();
         enemy.updateHealth();
     }

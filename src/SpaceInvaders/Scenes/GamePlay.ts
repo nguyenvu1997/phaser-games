@@ -17,7 +17,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
-        // create game objects
+        // Create Player
         this.player = new Player({
             scene: this,
             x: this.sys.canvas.width / 2,
@@ -25,8 +25,6 @@ export class GameScene extends Phaser.Scene {
             texture: 'player'
         });
 
-        // if you want to make it random:
-        // let enemyTypes = ["octopus", "crab", "squid"];
         for (let y = 0; y < 5; y++) {
             for (let x = 0; x < 10; x++) {
                 let type;
@@ -37,15 +35,8 @@ export class GameScene extends Phaser.Scene {
                 } else {
                     type = 'octopus';
                 }
-                // if you want to make it random:
-                // let type = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
                 this.enemies.add(
-                    new Enemy({
-                        scene: this,
-                        x: 20 + x * 15,
-                        y: 50 + y * 15,
-                        texture: type
-                    })
+                    new Enemy({ scene: this, x: 20 + x * 15, y: 50 + y * 15, texture: type })
                 );
             }
         }
@@ -58,13 +49,7 @@ export class GameScene extends Phaser.Scene {
             this.enemies.children.each((enemy: Enemy) => {
                 enemy.update();
                 if (enemy.getBullets().getLength() > 0) {
-                    this.physics.overlap(
-                        enemy.getBullets(),
-                        this.player,
-                        this.bulletHitPlayer,
-                        null,
-                        this
-                    );
+                    this.physics.overlap(enemy.getBullets(), this.player, this.bulletHitPlayer, null, this);
                 }
             }, this);
 

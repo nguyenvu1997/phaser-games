@@ -6,6 +6,7 @@ export class Enemy extends Phaser.GameObjects.Sprite {
         this.initImage();
         this.initPhysics();
         this.initTweens();
+        this.createAnimations();
         this.scene.add.existing(this);
     }
     getBullets() {
@@ -103,6 +104,44 @@ export class Enemy extends Phaser.GameObjects.Sprite {
                 this.destroy();
             }
         }
+    }
+    createAnimations() {
+        this.scene.anims.create({
+            "key": "octopusFly",
+            "frames": this.anims.generateFrameNumbers('octopus', { frames: [0, 1] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+        this.scene.anims.create({
+            "key": "octopusDead",
+            "frames": this.anims.generateFrameNumbers('octopus', { frames: [2, 2] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+        this.scene.anims.create({
+            "key": "crabFly",
+            "frames": this.anims.generateFrameNumbers('crab', { frames: [0, 1] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+        this.scene.anims.create({
+            "key": "crabDead",
+            "frames": this.anims.generateFrameNumbers('crab', { frames: [2, 2] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+        this.scene.anims.create({
+            "key": "squidFly",
+            "frames": this.anims.generateFrameNumbers('squid', { frames: [0, 1] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+        this.scene.anims.create({
+            "key": "squidDead",
+            "frames": this.anims.generateFrameNumbers('squid', { frames: [2, 2] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
     }
     gotHurt() {
         this.lives -= 1;

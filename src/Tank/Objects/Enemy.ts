@@ -4,16 +4,16 @@ import { Bullet } from "./Bullet.js";
 export class Enemy extends Phaser.GameObjects.Image {
     body: Phaser.Physics.Arcade.Body;
 
-    // variables
+    // Variables
     private health: number;
     private lastShoot: number;
     private speed: number;
 
-    // children
+    // Children
     private barrel: Phaser.GameObjects.Image;
     private lifeBar: Phaser.GameObjects.Graphics;
 
-    // game objects
+    // Game Objects
     private bullets: Phaser.GameObjects.Group;
 
     public getBarrel(): Phaser.GameObjects.Image {
@@ -32,12 +32,12 @@ export class Enemy extends Phaser.GameObjects.Image {
     }
 
     private initContainer() {
-        // variables
+        // Variables
         this.health = 1;
         this.lastShoot = 0;
         this.speed = 100;
 
-        // image
+        // Image
         this.setDepth(0);
 
         this.barrel = this.scene.add.image(0, 0, 'barrelRed');
@@ -47,7 +47,7 @@ export class Enemy extends Phaser.GameObjects.Image {
         this.lifeBar = this.scene.add.graphics();
         this.redrawLifebar();
 
-        // game objects
+        // Game Objects
         this.bullets = this.scene.add.group({
             /*classType: Bullet,*/
             active: true,
@@ -55,7 +55,7 @@ export class Enemy extends Phaser.GameObjects.Image {
             runChildUpdate: true
         });
 
-        // tweens
+        // Tweens
         this.scene.tweens.add({
             targets: this,
             props: { y: this.y - 200 },
@@ -69,7 +69,7 @@ export class Enemy extends Phaser.GameObjects.Image {
             yoyo: true
         });
 
-        // physics
+        // Physics
         this.scene.physics.world.enable(this);
     }
 
@@ -99,7 +99,6 @@ export class Enemy extends Phaser.GameObjects.Image {
                         texture: 'bulletRed'
                     })
                 );
-
                 this.lastShoot = this.scene.time.now + 400;
             }
         }

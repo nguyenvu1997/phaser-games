@@ -35,6 +35,15 @@ export class GamePlay extends Phaser.Scene {
                 }
             }
         }
+        // Particles Effects
+        let rect = new Phaser.Geom.Rectangle(4, 4, 248, 217);
+        let particles = this.add.particles('flares');
+        particles.createEmitter({
+            frame: 'white',
+            lifespan: 400,
+            scale: { start: 0.1, end: 0 },
+            emitZone: { type: 'edge', source: rect, quantity: 100 }
+        });
         this.scoreText = this.add.bitmapText(this.gameWidth / 2 - 20, 0, 'pcsenior', this.CONST.P1_SCORE + ' : ' + this.CONST.P2_SCORE, 8);
     }
     update(time) {
@@ -65,7 +74,7 @@ export class GamePlay extends Phaser.Scene {
             }
             this.scoreText.setText(this.CONST.P1_SCORE + ' : ' + this.CONST.P2_SCORE);
             if (this.CONST.P1_SCORE === 6 || this.CONST.P2_SCORE === 6) {
-                this.scene.start('MainMenuScene');
+                this.scene.start('mainmenu');
             }
             else {
                 this.scene.restart();
@@ -73,7 +82,7 @@ export class GamePlay extends Phaser.Scene {
         }
     }
     checkCollision() {
-        // border <-> snake collision
+        // Snake & Border
         for (let i = 0; i < this.gameBorder.length; i++) {
             if (this.player.getHead().x === this.gameBorder[i].x &&
                 this.player.getHead().y === this.gameBorder[i].y) {
@@ -84,7 +93,7 @@ export class GamePlay extends Phaser.Scene {
                 this.playerTwo.setDead(true);
             }
         }
-        // check snake <-> snake collision
+        // Snake 1 & Snake 2
         let playerOneBody = this.player.getBody();
         let bodiesMerged = playerOneBody.concat(this.playerTwo.getBody());
         for (let i = 0; i < bodiesMerged.length; i++) {

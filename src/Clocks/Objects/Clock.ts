@@ -10,7 +10,7 @@ export class Clock extends Phaser.GameObjects.Sprite {
     constructor(aParams: IClockConstructor) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
 
-        // face sprite
+        // Face Clock
         this.face = this.scene.add.sprite(
             aParams.x,
             aParams.y,
@@ -18,7 +18,7 @@ export class Clock extends Phaser.GameObjects.Sprite {
         );
         this.face.setVisible(false);
 
-        // hand sprite
+        // Hand Clock
         this.hand = this.scene.add.sprite(
             aParams.x,
             aParams.y,

@@ -3,15 +3,16 @@ export class Wall extends Phaser.GameObjects.Image {
         super(scene, x, y, texture, frame);
         // Images
         this.setOrigin(0.5, 0.5);
-        this.setAlpha(Phaser.Math.RND.between(0.01, 0.4));
+        // Animations
+        let tween = this.scene.tweens.add({
+            targets: this,
+            alpha: { from: 0.5, to: 1 },
+            repeat: -1,
+            yoyo: true,
+            duration: 1000,
+        });
         this.scene.add.existing(this);
     }
     update() {
-        if (this.alpha < 1) {
-            this.setAlpha(this.alpha + 0.005);
-        }
-        else {
-            this.setAlpha(1);
-        }
     }
 }

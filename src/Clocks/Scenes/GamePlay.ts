@@ -38,7 +38,6 @@ export class GamePlay extends Phaser.Scene {
             i < settings.LEVELS[settings.currentLevel].CLOCKS.length;
             i++
         ) {
-            console.log(settings.LEVELS[settings.currentLevel].CLOCKS[i])
             switch (settings.LEVELS[settings.currentLevel].CLOCKS[i]) {
                 // Small Clock
                 case 1:
@@ -78,23 +77,13 @@ export class GamePlay extends Phaser.Scene {
             texture: 'ball'
         });
 
-        this.physics.world.on(
-            'worldbounds',
-            function () {
-                this.scene.start('gameplay');
-            },
-            this
-        );
+        this.physics.world.on('worldbounds', function () {
+            this.scene.start('gameplay');
+        }, this);
 
         this.input.on('pointerdown', this.throwBall, this);
 
-        this.physics.add.overlap(
-            this.ball,
-            this.clockGroup,
-            this.handleBallClockOverlap,
-            null,
-            this
-        );
+        this.physics.add.overlap(this.ball, this.clockGroup, this.handleBallClockOverlap, null, this);
     }
 
     private addNewClock(

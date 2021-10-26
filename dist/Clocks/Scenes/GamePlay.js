@@ -19,7 +19,6 @@ export class GamePlay extends Phaser.Scene {
         this.clocksArray = [];
         this.clockGroup = this.add.group();
         for (let i = 0; i < settings.LEVELS[settings.currentLevel].CLOCKS.length; i++) {
-            console.log(settings.LEVELS[settings.currentLevel].CLOCKS[i]);
             switch (settings.LEVELS[settings.currentLevel].CLOCKS[i]) {
                 // Small Clock
                 case 1:

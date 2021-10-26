@@ -12,17 +12,16 @@ export class GameScene extends Phaser.Scene {
     private firstSelectedTile: Tile;
     private secondSelectedTile: Tile;
 
+    particles: Phaser.GameObjects.Particles.ParticleEmitterManager;
+    firstEmitter: Phaser.GameObjects.Particles.ParticleEmitter;
+
     constructor() {
-        super({
-            key: 'GameScene'
-        });
+        super('GameScene');
     }
 
     init(): void {
-        // Init variables
         this.canMove = true;
 
-        // set background color
         this.cameras.main.setBackgroundColor(0x78aade);
 
         // Init grid with tiles
@@ -73,9 +72,17 @@ export class GameScene extends Phaser.Scene {
      * @param event
      */
     private tileDown(pointer: any, gameobject: any, event: any): void {
+        this.particles = this.add.particles('flares');
         if (this.canMove) {
             if (!this.firstSelectedTile) {
                 this.firstSelectedTile = gameobject;
+
+                this.firstEmitter = this.particles.createEmitter({
+                    frame: 'red',
+                    lifespan: 1000,
+                    scale: { start: 0.1, end: 0 },
+                    emitZone: { type: 'edge', source: new Phaser.Geom.Rectangle(gameobject.x, gameobject.y, 65, 67), quantity: 60 }
+                });
             } else {
                 // So if we are here, we must have selected a second tile
                 this.secondSelectedTile = gameobject;
@@ -91,6 +98,7 @@ export class GameScene extends Phaser.Scene {
                 if ((dx === 1 && dy === 0) || (dx === 0 && dy === 1)) {
                     this.canMove = false;
                     this.swapTiles();
+                    this.firstEmitter.on = false
                 }
             }
         }
@@ -238,7 +246,7 @@ export class GameScene extends Phaser.Scene {
 
             for (var j = 0; j < tempArr.length; j++) {
                 let tile = tempArr[j];
-                //Find where this tile lives in the theoretical grid
+                // Find where this tile lives in the theoretical grid
                 let tilePos = this.getTilePos(this.tileGrid, tile);
 
                 // Remove the tile from the theoretical grid
@@ -253,7 +261,7 @@ export class GameScene extends Phaser.Scene {
     private getTilePos(tileGrid: Tile[][], tile: Tile): any {
         let pos = { x: -1, y: -1 };
 
-        //Find the position of a specific tile in the grid
+        // Find the position of a specific tile in the grid
         for (let y = 0; y < tileGrid.length; y++) {
             for (let x = 0; x < tileGrid[y].length; x++) {
                 //There is a match at this position so return the grid coords
@@ -311,7 +319,7 @@ export class GameScene extends Phaser.Scene {
             }
         }
 
-        //Check for vertical matches
+        // Check for vertical matches
         for (let j = 0; j < tileGrid.length; j++) {
             var tempArr = tileGrid[j];
             groups = [];

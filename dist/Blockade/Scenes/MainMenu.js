@@ -13,6 +13,7 @@ export class MainMenu extends Phaser.Scene {
             frameHeight: 8
         });
         this.load.bitmapFont('pcsenior', './assets/Blockade/font/pcsenior.png', './assets/Blockade/font/pcsenior.fnt');
+        this.load.atlas('flares', 'assets/Phaser/flares.png', 'assets/Phaser/flares.json');
     }
     create() {
         this.circleGraphic = this.add.graphics({

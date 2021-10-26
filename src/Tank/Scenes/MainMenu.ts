@@ -17,6 +17,9 @@ export class MenuScene extends Phaser.Scene {
 
     preload() {
         this.load.pack('preload', './assets/Tank/pack.json', 'preload');
+        this.load.image('explosion02', "./assets/Particles Effects/Explosion/explosion02.png")
+        this.load.image('blackSmoke00', "./assets/Particles Effects/Black smoke/blackSmoke00.png")
+
     }
 
     create(): void {

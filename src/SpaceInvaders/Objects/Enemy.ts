@@ -28,6 +28,8 @@ export class Enemy extends Phaser.GameObjects.Sprite {
 
         this.initTweens();
 
+        this.createAnimations();
+
         this.scene.add.existing(this);
     }
 
@@ -64,7 +66,6 @@ export class Enemy extends Phaser.GameObjects.Sprite {
                 this.lives = 2;
                 this.reloadTime = 12000;
                 this.valueKill = 60;
-
                 break;
         }
     }
@@ -133,6 +134,50 @@ export class Enemy extends Phaser.GameObjects.Sprite {
                 this.destroy();
             }
         }
+    }
+
+    createAnimations() {
+        this.scene.anims.create({
+            "key": "octopusFly",
+            "frames": this.anims.generateFrameNumbers('octopus', { frames: [0, 1] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+
+        this.scene.anims.create({
+            "key": "octopusDead",
+            "frames": this.anims.generateFrameNumbers('octopus', { frames: [2, 2] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+
+        this.scene.anims.create({
+            "key": "crabFly",
+            "frames": this.anims.generateFrameNumbers('crab', { frames: [0, 1] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+
+        this.scene.anims.create({
+            "key": "crabDead",
+            "frames": this.anims.generateFrameNumbers('crab', { frames: [2, 2] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+
+        this.scene.anims.create({
+            "key": "squidFly",
+            "frames": this.anims.generateFrameNumbers('squid', { frames: [0, 1] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
+
+        this.scene.anims.create({
+            "key": "squidDead",
+            "frames": this.anims.generateFrameNumbers('squid', { frames: [2, 2] }),
+            "repeat": -1,
+            "frameRate": 4
+        });
     }
 
     public gotHurt(): void {

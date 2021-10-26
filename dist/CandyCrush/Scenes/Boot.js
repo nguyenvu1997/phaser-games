@@ -1,8 +1,6 @@
 export class BootScene extends Phaser.Scene {
     constructor() {
-        super({
-            key: 'BootScene'
-        });
+        super('BootScene');
     }
     preload() {
         this.cameras.main.setBackgroundColor(0x98d687);
@@ -17,6 +15,7 @@ export class BootScene extends Phaser.Scene {
             this.loadingBar.destroy();
         }, this);
         this.load.pack('preload', './assets/CandyCrush/pack.json', 'preload');
+        this.load.atlas('flares', 'assets/Phaser/flares.png', 'assets/Phaser/flares.json');
     }
     update() {
         this.scene.start('GameScene');

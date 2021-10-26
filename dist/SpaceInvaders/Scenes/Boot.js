@@ -1,26 +1,21 @@
 export class BootScene extends Phaser.Scene {
     constructor() {
-        super({
-            key: 'BootScene'
-        });
+        super('BootScene');
     }
     preload() {
-        // set the background and create loading bar
         this.cameras.main.setBackgroundColor(0x98d687);
         this.createLoadingbar();
-        // pass value to change the loading bar fill
         this.load.on('progress', function (value) {
             this.progressBar.clear();
             this.progressBar.fillStyle(0xfff6d3, 1);
             this.progressBar.fillRect(this.cameras.main.width / 4, this.cameras.main.height / 2 - 16, (this.cameras.main.width / 2) * value, 16);
         }, this);
-        // delete bar graphics, when loading complete
         this.load.on('complete', function () {
             this.progressBar.destroy();
             this.loadingBar.destroy();
         }, this);
-        // load out package
         this.load.pack('preload', './assets/SpaceInvaders/pack.json', 'preload');
+        this.load.image('explosion00', "./assets/Particles Effects/Explosion/explosion00.png");
     }
     update() {
         this.scene.start('MenuScene');

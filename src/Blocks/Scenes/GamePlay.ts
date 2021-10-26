@@ -13,9 +13,7 @@ export class GamePlay extends Phaser.Scene {
     private activatedBlockId: number;
 
     constructor() {
-        super({
-            key: 'gameplay'
-        });
+        super('gameplay');
     }
 
     init(): void {

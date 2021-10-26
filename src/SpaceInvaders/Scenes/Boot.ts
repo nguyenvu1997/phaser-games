@@ -3,17 +3,13 @@ export class BootScene extends Phaser.Scene {
     private progressBar: Phaser.GameObjects.Graphics;
 
     constructor() {
-        super({
-            key: 'BootScene'
-        });
+        super('BootScene');
     }
 
     preload(): void {
-        // set the background and create loading bar
         this.cameras.main.setBackgroundColor(0x98d687);
         this.createLoadingbar();
 
-        // pass value to change the loading bar fill
         this.load.on(
             'progress',
             function (value: number) {
@@ -29,7 +25,6 @@ export class BootScene extends Phaser.Scene {
             this
         );
 
-        // delete bar graphics, when loading complete
         this.load.on(
             'complete',
             function () {
@@ -39,8 +34,8 @@ export class BootScene extends Phaser.Scene {
             this
         );
 
-        // load out package
         this.load.pack('preload', './assets/SpaceInvaders/pack.json', 'preload');
+        this.load.image('explosion00', "./assets/Particles Effects/Explosion/explosion00.png")
     }
 
     update(): void {
