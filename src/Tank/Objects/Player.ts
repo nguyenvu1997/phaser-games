@@ -117,15 +117,17 @@ export class Player extends Phaser.GameObjects.Image {
         // rotate tank
         if (this.cursors.left.isDown) {
             this.rotation -= 0.02;
+            this.barrel.rotation -= 0.02;
         } else if (this.cursors.right.isDown) {
             this.rotation += 0.02;
+            this.barrel.rotation += 0.02;
         }
 
         // rotate barrel
         if (this.rotateKeyLeft.isDown) {
-            this.barrel.rotation -= 0.05;
+            // this.barrel.rotation -= 0.05;
         } else if (this.rotateKeyRight.isDown) {
-            this.barrel.rotation += 0.05;
+            // this.barrel.rotation += 0.05;
         }
     }
 
