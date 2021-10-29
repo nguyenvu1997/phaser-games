@@ -2,6 +2,7 @@ import { Bullet } from "./Bullet.js";
 export class Enemy extends Phaser.GameObjects.Image {
     constructor(aParams) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
+        this.tankShoot = this.scene.sound.add('tank-shoot', { volume: 0.1 });
         this.initContainer();
         this.scene.add.existing(this);
     }
@@ -70,7 +71,8 @@ export class Enemy extends Phaser.GameObjects.Image {
                     y: this.barrel.y,
                     texture: 'bulletRed'
                 }));
-                this.lastShoot = this.scene.time.now + 400;
+                this.tankShoot.play();
+                this.lastShoot = this.scene.time.now + 1000;
             }
         }
     }

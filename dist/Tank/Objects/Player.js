@@ -2,6 +2,7 @@ import { Bullet } from "./Bullet.js";
 export class Player extends Phaser.GameObjects.Image {
     constructor(aParams) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
+        this.tankShoot = this.scene.sound.add('tank-shoot', { volume: 0.3 });
         this.initImage();
         this.scene.add.existing(this);
     }
@@ -106,6 +107,7 @@ export class Player extends Phaser.GameObjects.Image {
                 }));
                 this.lastShoot = this.scene.time.now + 80;
             }
+            this.tankShoot.play();
         }
     }
     redrawLifebar() {
@@ -124,7 +126,7 @@ export class Player extends Phaser.GameObjects.Image {
         else {
             this.health = 0;
             this.active = false;
-            this.scene.scene.start('MenuScene');
+            this.scene.scene.start('GameOverScene');
         }
     }
 }

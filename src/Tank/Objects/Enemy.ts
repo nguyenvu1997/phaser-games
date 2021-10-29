@@ -15,6 +15,7 @@ export class Enemy extends Phaser.GameObjects.Image {
 
     // Game Objects
     private bullets: Phaser.GameObjects.Group;
+    private tankShoot: Phaser.Sound.BaseSound;
 
     public getBarrel(): Phaser.GameObjects.Image {
         return this.barrel;
@@ -26,6 +27,8 @@ export class Enemy extends Phaser.GameObjects.Image {
 
     constructor(aParams: IImageConstructor) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
+
+        this.tankShoot = this.scene.sound.add('tank-shoot', { volume: 0.1 });
 
         this.initContainer();
         this.scene.add.existing(this);
@@ -99,7 +102,8 @@ export class Enemy extends Phaser.GameObjects.Image {
                         texture: 'bulletRed'
                     })
                 );
-                this.lastShoot = this.scene.time.now + 400;
+                this.tankShoot.play();
+                this.lastShoot = this.scene.time.now + 1000;
             }
         }
     }

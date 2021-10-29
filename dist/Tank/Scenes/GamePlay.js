@@ -1,11 +1,19 @@
 import { Enemy } from "../Objects/Enemy.js";
 import { Obstacle } from "../Objects/Obstacle.js";
 import { Player } from "../Objects/Player.js";
+import { CONST } from "../Const.js";
 export class GameScene extends Phaser.Scene {
     constructor() {
         super('GameScene');
     }
+    init() {
+        CONST.SCORE = 0;
+    }
     create() {
+        // Load UI
+        this.scene.run('game-ui');
+        // Load Sounds
+        this.sound.mute = false;
         // create tilemap from tiled JSON
         this.map = this.make.tilemap({ key: 'levelMap' });
         this.tileset = this.map.addTilesetImage('tiles');
@@ -20,10 +28,10 @@ export class GameScene extends Phaser.Scene {
         });
         // Create Objects
         this.convertObjects();
-        // collider layer and obstacles
+        // Player & Obstacles
         this.physics.add.collider(this.player, this.layer);
         this.physics.add.collider(this.player, this.obstacles);
-        // collider for bullets
+        // Bullets
         this.physics.add.collider(this.player.getBullets(), this.layer, this.bulletHitLayer, null, this);
         this.physics.add.collider(this.player.getBullets(), this.obstacles, this.bulletHitObstacles, null, this);
         this.enemies.children.each((enemy) => {
@@ -32,6 +40,15 @@ export class GameScene extends Phaser.Scene {
             this.physics.add.collider(enemy.getBullets(), this.obstacles, this.bulletHitObstacles, null);
             this.physics.add.collider(enemy.getBullets(), this.layer, this.bulletHitLayer, null);
         }, this);
+        // Score
+        // this.scoreText = this.add.text(300, -325, 'Score:', {
+        //     color: 'black',
+        //     fontSize: '40'
+        // }).setScale(3);
+        this.scoreText = this.add.bitmapText(800, 30, 'font2', "SCORE: " + CONST.SCORE)
+            .setDepth(2)
+            .setScrollFactor(0);
+        // Camera
         this.cameras.main.startFollow(this.player);
     }
     update() {
@@ -106,6 +123,8 @@ export class GameScene extends Phaser.Scene {
     playerBulletHitEnemy(bullet, enemy) {
         bullet.endEffect();
         bullet.destroy();
+        CONST.SCORE += 1;
+        this.scoreText.setText("SCORE: " + CONST.SCORE);
         enemy.updateHealth();
     }
 }

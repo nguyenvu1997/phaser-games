@@ -25,10 +25,12 @@ export class Bullet extends Phaser.GameObjects.Image {
             follow: this,
             scale: { start: 0.2, end: 0 },
         });
+        this.hitShoot = this.scene.sound.add('hit-shoot', { volume: 0.5 });
         this.scene.add.existing(this);
     }
     endEffect() {
         this.particles.destroy();
+        this.hitShoot.play();
     }
     update() { }
 }

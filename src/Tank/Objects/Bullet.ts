@@ -5,6 +5,8 @@ export class Bullet extends Phaser.GameObjects.Image {
     particles;
 
     private bulletSpeed: number;
+    private hitShoot: Phaser.Sound.BaseSound;
+
 
     constructor(aParams: IBulletConstructor) {
         super(aParams.scene, aParams.x, aParams.y, aParams.texture);
@@ -44,11 +46,15 @@ export class Bullet extends Phaser.GameObjects.Image {
             scale: { start: 0.2, end: 0 },
         });
 
+        this.hitShoot = this.scene.sound.add('hit-shoot', { volume: 0.5 });
+
+
         this.scene.add.existing(this);
     }
 
     endEffect() {
         this.particles.destroy();
+        this.hitShoot.play();
     }
 
     update(): void { }

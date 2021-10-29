@@ -3,6 +3,9 @@ import { Enemy } from "../Objects/Enemy.js";
 import { Obstacle } from "../Objects/Obstacle.js";
 import { Player } from "../Objects/Player.js";
 
+import { CONST } from "../Const.js";
+
+
 export class GameScene extends Phaser.Scene {
     private map: Phaser.Tilemaps.Tilemap;
     private tileset: Phaser.Tilemaps.Tileset;
@@ -11,14 +14,26 @@ export class GameScene extends Phaser.Scene {
     private player: Player;
     private enemies: Phaser.GameObjects.Group;
     private obstacles: Phaser.GameObjects.Group;
+    private scoreText: Phaser.GameObjects.BitmapText;
 
     private target: Phaser.Math.Vector2;
+
 
     constructor() {
         super('GameScene');
     }
 
+    init(): void {
+        CONST.SCORE = 0
+    }
+
     create(): void {
+        // Load UI
+        this.scene.run('game-ui')
+
+        // Load Sounds
+        this.sound.mute = false;
+
         // create tilemap from tiled JSON
         this.map = this.make.tilemap({ key: 'levelMap' });
 
@@ -38,13 +53,11 @@ export class GameScene extends Phaser.Scene {
         // Create Objects
         this.convertObjects();
 
-
-
-        // collider layer and obstacles
+        // Player & Obstacles
         this.physics.add.collider(this.player, this.layer);
         this.physics.add.collider(this.player, this.obstacles);
 
-        // collider for bullets
+        // Bullets
         this.physics.add.collider(
             this.player.getBullets(),
             this.layer,
@@ -90,6 +103,17 @@ export class GameScene extends Phaser.Scene {
             );
         }, this);
 
+        // Score
+        // this.scoreText = this.add.text(300, -325, 'Score:', {
+        //     color: 'black',
+        //     fontSize: '40'
+        // }).setScale(3);
+
+        this.scoreText = this.add.bitmapText(800, 30, 'font2', "SCORE: " + CONST.SCORE)
+            .setDepth(2)
+            .setScrollFactor(0);
+
+        // Camera
         this.cameras.main.startFollow(this.player);
     }
 
@@ -180,6 +204,8 @@ export class GameScene extends Phaser.Scene {
     private playerBulletHitEnemy(bullet: Bullet, enemy: Enemy): void {
         bullet.endEffect();
         bullet.destroy();
+        CONST.SCORE += 1;
+        this.scoreText.setText("SCORE: " + CONST.SCORE);
         enemy.updateHealth();
     }
 }
