@@ -28,7 +28,7 @@ export class MenuScene extends Phaser.Scene {
     create() {
         this.bitmapTexts.push(this.add.bitmapText(this.sys.canvas.width / 2 - 120, this.sys.canvas.height / 2, 'font', 'PRESS S TO PLAY', 30));
         this.bitmapTexts.push(this.add.bitmapText(this.sys.canvas.width / 2 - 120, this.sys.canvas.height / 2 - 100, 'font', 'TANK', 100));
-        this.scene.start('game-ui');
+        this.scene.start('GameScene');
     }
     update() {
     }

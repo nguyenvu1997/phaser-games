@@ -40,11 +40,6 @@ export class GameScene extends Phaser.Scene {
             this.physics.add.collider(enemy.getBullets(), this.obstacles, this.bulletHitObstacles, null);
             this.physics.add.collider(enemy.getBullets(), this.layer, this.bulletHitLayer, null);
         }, this);
-        // Score
-        // this.scoreText = this.add.text(300, -325, 'Score:', {
-        //     color: 'black',
-        //     fontSize: '40'
-        // }).setScale(3);
         this.scoreText = this.add.bitmapText(800, 30, 'font2', "SCORE: " + CONST.SCORE)
             .setDepth(2)
             .setScrollFactor(0);

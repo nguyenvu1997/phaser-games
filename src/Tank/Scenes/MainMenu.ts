@@ -59,7 +59,7 @@ export class MenuScene extends Phaser.Scene {
             )
         );
 
-        this.scene.start('game-ui')
+        this.scene.start('GameScene')
     }
 
     update(): void {

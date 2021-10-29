@@ -30,6 +30,9 @@ export class UI extends Phaser.Scene {
             }
         });
         if (this.startGame == false) {
+            setTimeout(() => {
+                this.scene.pause('GameScene');
+            }, 10);
             pauseMenu.show();
             this.startGame = true;
         }

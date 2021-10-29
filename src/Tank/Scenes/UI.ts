@@ -12,6 +12,9 @@ export class UI extends Phaser.Scene {
         // Pause Menu
         let pauseIcon = this.add.image(50, 50, 'pause-game').setScrollFactor(0);
 
+
+
+
         let pauseMenu = new PauseMenu(this)
 
         pauseIcon.setInteractive()
@@ -37,6 +40,9 @@ export class UI extends Phaser.Scene {
             })
 
         if (this.startGame == false) {
+            setTimeout(() => {
+                this.scene.pause('GameScene')
+            }, 10);
             pauseMenu.show();
             this.startGame = true;
         }
