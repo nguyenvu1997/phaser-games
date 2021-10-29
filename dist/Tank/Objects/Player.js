@@ -126,7 +126,8 @@ export class Player extends Phaser.GameObjects.Image {
         else {
             this.health = 0;
             this.active = false;
-            this.scene.scene.start('GameOverScene');
+            this.scene.scene.stop('GameScene');
+            this.scene.scene.run('GameOverScene');
         }
     }
 }

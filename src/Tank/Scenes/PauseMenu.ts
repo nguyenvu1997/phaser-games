@@ -17,17 +17,17 @@ export class PauseMenu {
         this.container = scene.add.container(2000, 500)
         this.container.setDepth(10)
 
-        const panel = scene.add.nineslice(0, 0, 200, 200, 'grey-panel', 24)
+        const panel = scene.add.nineslice(0, 0, 300, 300, 'grey-panel', 24)
             .setOrigin(1, 0)
 
-        let newGame = scene.add.text(-panel.width + 10, 70, 'New Game', {
+        let newGame = scene.add.text(-panel.width + 50, 115, 'New Game', {
             color: 'black',
-            fontSize: '28'
+            fontSize: '32'
         }).setScale(3);
 
-        let continueGame = scene.add.text(-panel.width + 10, 130, 'Continue', {
+        let continueGame = scene.add.text(-panel.width + 50, 195, 'Continue', {
             color: 'black',
-            fontSize: '28'
+            fontSize: '32'
         }).setScale(3);
 
         newGame.setInteractive().on('pointerup', function () {
@@ -40,13 +40,13 @@ export class PauseMenu {
             this.hide();
         }, this)
 
-        const soundButton = scene.add.image(-panel.width + 10, 8, 'small-button')
+        const soundButton = scene.add.image(-panel.width + 50, 28, 'small-button')
             .setOrigin(0, 0)
 
         this.checkmark = scene.add.image(soundButton.x + soundButton.width * 0.5, soundButton.y + soundButton.height * 0.5, 'checkmark')
         const text = scene.add.text(soundButton.x + soundButton.width + 10, soundButton.y, 'Sound', {
             color: 'black',
-            fontSize: '28'
+            fontSize: '32'
         }).setScale(3);
 
         this.container.add([panel, soundButton, this.checkmark, text, newGame, continueGame])
