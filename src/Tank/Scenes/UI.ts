@@ -1,9 +1,11 @@
 import { PauseMenu } from "./PauseMenu.js";
 
 export class UI extends Phaser.Scene {
+    private startGame = false;
 
     constructor() {
         super('game-ui')
+
     }
 
     create() {
@@ -34,5 +36,10 @@ export class UI extends Phaser.Scene {
                 }
             })
 
+        if (this.startGame == false) {
+            pauseMenu.show();
+            this.startGame = true;
+        }
     }
+
 }

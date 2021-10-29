@@ -59,12 +59,10 @@ export class MenuScene extends Phaser.Scene {
             )
         );
 
-
+        this.scene.start('game-ui')
     }
 
     update(): void {
-        if (this.startKey.isDown) {
-            this.scene.start('GameScene')
-        }
+
     }
 }

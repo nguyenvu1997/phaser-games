@@ -2,7 +2,11 @@ export class PauseMenu {
 
     private container!: Phaser.GameObjects.Container;
     private checkmark!: Phaser.GameObjects.Image;
+    private soundButton!: Phaser.GameObjects.Image;
     private scene: Phaser.Scene;
+    private text: Phaser.GameObjects.Text;
+    private newGame: Phaser.GameObjects.Text;
+    private continueGame: Phaser.GameObjects.Text;
 
     private isShow = false;
 
@@ -20,50 +24,51 @@ export class PauseMenu {
         const panel = scene.add.nineslice(0, 0, 300, 300, 'grey-panel', 24)
             .setOrigin(1, 0)
 
-        let newGame = scene.add.text(-panel.width + 50, 115, 'New Game', {
+        this.newGame = scene.add.text(-panel.width + 50, 115, 'New Game', {
             color: 'black',
             fontSize: '32'
         }).setScale(3);
 
-        let continueGame = scene.add.text(-panel.width + 50, 195, 'Continue', {
+        this.continueGame = scene.add.text(-panel.width + 50, 195, 'Continue', {
             color: 'black',
             fontSize: '32'
         }).setScale(3);
 
-        newGame.setInteractive().on('pointerup', function () {
+        this.newGame.setInteractive().on('pointerup', function () {
             this.scene.scene.start('GameScene');
             this.hide();
         }, this)
 
-        continueGame.setInteractive().on('pointerup', function () {
+        this.continueGame.setInteractive().on('pointerup', function () {
             this.scene.scene.resume('GameScene');
             this.hide();
         }, this)
 
-        const soundButton = scene.add.image(-panel.width + 50, 28, 'small-button')
+        this.soundButton = scene.add.image(-panel.width + 50, 28, 'small-button')
             .setOrigin(0, 0)
 
-        this.checkmark = scene.add.image(soundButton.x + soundButton.width * 0.5, soundButton.y + soundButton.height * 0.5, 'checkmark')
-        const text = scene.add.text(soundButton.x + soundButton.width + 10, soundButton.y, 'Sound', {
+        this.checkmark = scene.add.image(this.soundButton.x + this.soundButton.width * 0.5, this.soundButton.y + this.soundButton.height * 0.5, 'checkmark')
+        this.text = scene.add.text(this.soundButton.x + this.soundButton.width + 10, this.soundButton.y, 'Sound', {
             color: 'black',
             fontSize: '32'
         }).setScale(3);
 
-        this.container.add([panel, soundButton, this.checkmark, text, newGame, continueGame])
+        this.container.add([panel, this.soundButton, this.checkmark, this.text, this.newGame, this.continueGame])
         this.container.setScrollFactor(0)
 
         // Add Event Sound Button
-        soundButton.setInteractive()
+        this.soundButton.setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                soundButton.setTint(0xe0e0e0)
+                this.soundButton.setTint(0xe0e0e0)
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-                soundButton.setTint(0xffffff)
+                this.soundButton.setTint(0xffffff)
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                soundButton.setTint(0xffffff)
+                this.soundButton.setTint(0xffffff)
                 this.setSound()
             })
+
     }
 
     show() {
@@ -78,6 +83,27 @@ export class PauseMenu {
             ease: Phaser.Math.Easing.Sine.InOut
         })
 
+        this.scene.tweens.add({
+            targets: [this.newGame, this.continueGame, this.soundButton],
+            x: -250,
+            duration: 300,
+            ease: Phaser.Math.Easing.Sine.InOut
+        })
+
+        this.scene.tweens.add({
+            targets: this.checkmark,
+            x: -230,
+            duration: 300,
+            ease: Phaser.Math.Easing.Sine.InOut
+        })
+
+        this.scene.tweens.add({
+            targets: this.text,
+            x: -200,
+            duration: 300,
+            ease: Phaser.Math.Easing.Sine.InOut
+        })
+
         this.isShow = true
     }
 
@@ -88,6 +114,13 @@ export class PauseMenu {
 
         this.scene.tweens.add({
             targets: this.container,
+            x: 2000,
+            duration: 300,
+            ease: Phaser.Math.Easing.Sine.InOut
+        })
+
+        this.scene.tweens.add({
+            targets: [this.newGame, this.continueGame, , this.soundButton, this.checkmark, this.text],
             x: 2000,
             duration: 300,
             ease: Phaser.Math.Easing.Sine.InOut

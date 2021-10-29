@@ -2,6 +2,7 @@ import { PauseMenu } from "./PauseMenu.js";
 export class UI extends Phaser.Scene {
     constructor() {
         super('game-ui');
+        this.startGame = false;
     }
     create() {
         // Pause Menu
@@ -28,5 +29,9 @@ export class UI extends Phaser.Scene {
                 this.scene.pause('GameScene');
             }
         });
+        if (this.startGame == false) {
+            pauseMenu.show();
+            this.startGame = true;
+        }
     }
 }
